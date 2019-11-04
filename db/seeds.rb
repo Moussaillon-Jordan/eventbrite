@@ -19,3 +19,9 @@ DatabaseCleaner.clean
 end
 
 puts "10 utilisateurs créés"
+
+10.times do		#cree 10 users
+  User.create(first_name: Faker::Name.first_name, last_name: Faker::Name.last_name, description: Faker::Marketing.buzzwords, email: Faker::Internet.email, encrypted_password: 'test')
+end
+
+puts "10 events créés"
