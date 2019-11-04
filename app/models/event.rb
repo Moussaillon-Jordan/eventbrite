@@ -1,6 +1,6 @@
 class Event < ApplicationRecord
   validates :start_date, presence: true
-  validates :duration, presence: true, :numericality { :greater_than: 0}
+  validates :duration, presence: true, numericality: { greater_than: 0}
   validates :title, presence: true, length: { in: 5..140 }
   validates :description, presence: true, length: { in: 20..1000 }
   validates :price, presence: true, numericality: { greater_than_or_equal_to: 1, less_than_or_equal_to: 1000 }
@@ -14,7 +14,7 @@ class Event < ApplicationRecord
   belongs_to :orga, class_name: "User"
 
   def is_future?
-    errors.add(:start_date, "La date de départ ne peut être passée") unless Time.parse(self.start_date) > Time.now
+    errors.add(:start_date, "La date de départ ne peut être passée") unless self.start_date.to_i > Time.now.to_i
   end
 
   def is_multiple_5?

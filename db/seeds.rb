@@ -20,8 +20,8 @@ end
 
 puts "10 utilisateurs créés"
 
-10.times do		#cree 10 users
-  User.create(first_name: Faker::Name.first_name, last_name: Faker::Name.last_name, description: Faker::Marketing.buzzwords, email: Faker::Internet.email, encrypted_password: 'test')
+5.times do
+  Event.create(title: Faker::Book.title, duration: [10, 25, 45].sample, start_date: Faker::Time.forward(days: 23), description: Faker::ChuckNorris.fact, price: rand(1..1000), location: Faker::Address.city, orga_id: User.all.sample.id)
 end
 
-puts "10 events créés"
+puts "5 évènements créés"
