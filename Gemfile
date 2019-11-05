@@ -71,3 +71,5 @@ gem 'faker'
 gem 'database_cleaner'
 
 gem 'dotenv-rails'
+
+gem 'devise'
