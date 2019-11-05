@@ -1,0 +1,52 @@
+<% if @event !=nil%>
+  <div class="alert alert-danger m-0 p-3 text-center" role="alert">
+    <% @event.errors.each do |attr, msg|  %>
+      <%= attr %>
+      <%= msg %>
+    <% end %>
+  </div>
+<% end %>
+
+<%= form_tag url_for(action: 'create'), method: "post" do %>
+<input type="hidden" name="authenticity_token" value=<%= form_authenticity_token %>>
+
+<div class="form-group">
+  <%= label_tag 'Le titre' %>
+</br>
+<%= text_field_tag 'title', value = nil, placeholder: 'Quoi ?' %>
+
+</div>
+
+<div class="form-group">
+<%= label_tag "La description" %>
+</br>
+<%= text_area_tag 'description', value = nil, placeholder: 'Décris ton event' %>
+</div>
+
+<div class="form-group">
+<%= label_tag 'La date (format datetime pour le moment)' %>
+</br>
+<%= text_field_tag 'start_date', value = nil, placeholder: 'Quand ?' %>
+</div>
+
+<div class="form-group">
+<%= label_tag 'Durée (en minutes)' %>
+</br>
+<%= text_field_tag 'duration', value = nil, placeholder: 'Combien de temps' %>
+</div>
+
+<div class="form-group">
+<%= label_tag 'Le lieu' %>
+</br>
+<%= text_field_tag 'location', value = nil, placeholder: 'Où cela se passe' %>
+</div>
+
+<div class="form-group">
+<%= label_tag 'Le prix' %>
+</br>
+<%= text_field_tag 'price', value = nil, placeholder: 'Coût par participant' %>
+</div>
+
+<%= submit_tag "Créer" %>
+
+<% end %>
