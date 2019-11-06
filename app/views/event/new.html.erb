@@ -7,46 +7,49 @@
   </div>
 <% end %>
 
-<%= form_tag url_for(action: 'create'), method: "post" do %>
-<input type="hidden" name="authenticity_token" value=<%= form_authenticity_token %>>
+<div class="container">
+    <div class="row mt-5">
+      <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
+        <div class="card card-signin my-5 px-4">
+          <div class="card-body">
+            <h5 class="card-title text-center"> <span class="list-title px-3 display-4">Créer un Event </span></h5>
+            <%= form_tag url_for(action: 'create'), method: "post" do %>
+            <input type="hidden" name="authenticity_token" value=<%= form_authenticity_token %>>
 
-<div class="form-group">
-  <%= label_tag 'Le titre' %>
-</br>
-<%= text_field_tag 'title', value = nil, placeholder: 'Quoi ?' %>
+              <%= label_tag 'Le titre' %>
+              <div class="form-label-group">
+              <%= text_field_tag 'title', value = nil, placeholder: 'Quoi ?' %>
+              </div>
 
-</div>
+              <%= label_tag "La description" %>
+              <div class="form-label-group">
+                <%= text_area_tag 'description', value = nil, placeholder: 'Décris ton event' %>
+              </div>
 
-<div class="form-group">
-<%= label_tag "La description" %>
-</br>
-<%= text_area_tag 'description', value = nil, placeholder: 'Décris ton event' %>
-</div>
+              <%= label_tag 'La date' %>
+              <div class="form-label-group">
+                <%= date_field_tag 'start_date', value = nil, placeholder: 'Quand ?' %>
+              </div>
 
-<div class="form-group">
-<%= label_tag 'La date' %>
-</br>
-<%= date_field_tag 'start_date', value = nil, placeholder: 'Quand ?' %>
-</div>
+              <%= label_tag 'Durée (en minutes)' %>
+              <div class="form-label-group">
+                <%= text_field_tag 'duration', value = nil, placeholder: 'Combien de temps' %>
+              </div>
 
-<div class="form-group">
-<%= label_tag 'Durée (en minutes)' %>
-</br>
-<%= text_field_tag 'duration', value = nil, placeholder: 'Combien de temps' %>
-</div>
+              <%= label_tag 'Le lieu' %>
+              <div class="form-label-group">
+              <%= text_field_tag 'location', value = nil, placeholder: 'Où cela se passe' %>
+              </div>
 
-<div class="form-group">
-<%= label_tag 'Le lieu' %>
-</br>
-<%= text_field_tag 'location', value = nil, placeholder: 'Où cela se passe' %>
-</div>
+              <%= label_tag 'Le prix' %>
+              <div class="form-label-group">
+              <%= text_field_tag 'price', value = nil, placeholder: 'Coût par participant' %>
+              </div>
 
-<div class="form-group">
-<%= label_tag 'Le prix' %>
-</br>
-<%= text_field_tag 'price', value = nil, placeholder: 'Coût par participant' %>
-</div>
-
-<%= submit_tag "Créer" %>
-
-<% end %>
+              <%= submit_tag "Créer l'Event", class: 'btn btn-lg btn-primary btn-block text-uppercase my-3' %>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

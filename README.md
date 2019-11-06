@@ -1,24 +1,9 @@
-# README
+# Bienvenue sur Eventlike !
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Rends toi sur https://eventlike.herokuapp.com
 
-Things you may want to cover:
+Puis amuse toi !
 
-* Ruby version
+Tu peux Créer ton compte, te connecter si tu en as déjà un, découvrir les events près de chez toi et même en créer une fois connecté !
 
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+(n'oublie pas de créer la database et d'utiliser un petit seed pour une meilleure expérience)
