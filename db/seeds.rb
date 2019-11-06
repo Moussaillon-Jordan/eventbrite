@@ -14,11 +14,11 @@ DatabaseCleaner.allow_remote_database_url = true
 DatabaseCleaner.strategy = :truncation
 DatabaseCleaner.clean
 
-1.times do		#cree 10 users
-  User.create(first_name: Faker::Name.first_name, last_name: Faker::Name.last_name, description: Faker::Marketing.buzzwords, email: 'azerty@yopmail.com', encrypted_password: 'password')
+2.times do		#cree 10 users
+  User.create(first_name: Faker::Name.first_name, last_name: Faker::Name.last_name, description: Faker::Marketing.buzzwords, email: Faker::Internet.email, password: 'password', password: 'password')
 end
 
-puts "1 utilisateur créé"
+puts "2 utilisateurs créés"
 
 30.times do
   Event.create(title: Faker::Book.title, duration: [10, 25, 45].sample, start_date: Faker::Time.forward(days: 365), description: Faker::ChuckNorris.fact, price: rand(1..1000), location: Faker::Address.city, orga_id: User.all.sample.id)
