@@ -1,53 +1,60 @@
-<div class="position-relative overflow-hidden p-3 p-md-5 m-md-3 text-center bg-light">
+<div class="position-relative overflow-hidden p-5 p-md-5 text-center bg-light">
   <div class="col-md-5 p-lg-5 mx-auto my-5">
     <h1 class="display-4 font-weight-normal">
-      <%= Event.find(params[:id]).title %>
+      <%= @event.title %>
       <br>
-      <span class="badge badge-primary"> <%= Event.find(params[:id]).price %>€</span></h1>
-    <p class="lead font-weight-normal"><%= Event.find(params[:id]).description %></p>
-    <a class="btn btn-lg btn-primary" href="#">Participer</a>
-  </div>
-  <div class="product-device box-shadow d-none d-md-block"></div>
-  <div class="product-device product-device-2 box-shadow d-none d-md-block"></div>
-</div>
+      <span class="badge badge-primary">
+        <%= @event.price %>€</span></h1>
+        <p>Description :</p>
+    <p class="lead font-weight-normal"><%= @event.description %></p>
 
-<div class="d-md-flex flex-md-equal w-100 my-md-3 pl-md-3">
+    <% if @event.users.include?(current_user) %>
+      <p>Vous participez à cet évènement</p>
 
-  <div class="bg-dark mr-md-3 pt-3 px-3 pt-md-5 px-md-5 text-center text-white overflow-hidden w-50">
-    <div class="my-3 py-3">
-      <h2 class="display-5">Quand ça ?</h2>
-      <p class="lead"><%= Event.find(params[:id]).start_date.strftime('%a %b %d') %></p>
+      <% elsif current_user && current_user.id != @event.orga_id || !current_user %>
+        <%= link_to 'Participer', new_event_attendance_charge_path(@event.id, current_user.id), class: 'btn btn-lg btn-primary' %>
+
+        <% elsif current_user && current_user.id == @event.orga_id %>
+          <%= link_to 'Modifier mon Event', edit_event_path, class: 'btn btn-lg btn-primary' %>
+
+        <% end %>
+
+      </div>
+
     </div>
-    <div class="bg-light box-shadow mx-auto" style="width: 80%; height: 300px; border-radius: 21px 21px 0 0;"></div>
-  </div>
 
-  <div class="bg-light mr-md-3 pt-3 px-3 pt-md-5 px-md-5 text-center overflow-hidden w-50">
-    <div class="my-3 p-3">
-      <h2 class="display-5">Où ça ?</h2>
-      <p class="lead"><%= Event.find(params[:id]).location %></p>
+    <div class="d-md-flex flex-md-equal my-md-3 pl-md-3 w-100">
+
+      <div class="bg-dark py-5 px-3 pt-md-5 px-md-5 text-center text-white overflow-hidden col-md-6 blue-case">
+        <div class="my-5 py-3">
+          <h2 class="display-5 mt-5">Quand ça ?</h2>
+          <p class="lead display-4 mb-5"><%= @event.start_date.strftime('%a %b %d') %></p>
+        </div>
+      </div>
+
+      <div class="bg-light py-5 px-3 pt-md-5 px-md-5 text-center overflow-hidden col-md-6">
+        <div class="my-5 p-3">
+          <h2 class="display-5 mt-5">Où ça ?</h2>
+          <p class="lead display-4 mb-5"><%= @event.location %></p>
+        </div>
+      </div>
+
     </div>
-    <div class="bg-dark box-shadow mx-auto" style="width: 80%; height: 300px; border-radius: 21px 21px 0 0;"></div>
-  </div>
 
-</div>
+    <div class="d-md-flex flex-md-equal my-md-3 pl-md-3 w-100  ">
 
-<div class="d-md-flex flex-md-equal w-100 my-md-3 pl-md-3">
+      <div class="bg-dark py-5 px-3 pt-md-5 px-md-5 text-center text-white overflow-hidden col-md-6 pic-case">
+        <div class="my-5 p-3">
+          <h2 class="display-5 mt-5">Qui sera là ?</h2>
+          <p class="lead display-4 mb-5"><%= @event.users.count %> personnes participent à cet event.</p>
+        </div>
+      </div>
 
-  <div class="bg-light mr-md-3 pt-3 px-3 pt-md-5 px-md-5 text-center overflow-hidden w-50">
-    <div class="my-3 p-3">
-      <h2 class="display-5">Qui sera là ?</h2>
-      <p class="lead"><%= Event.find(params[:id]).users.count %> personnes participent à cet event.</p>
+      <div class="bg-white py-5 px-3 pt-md-5 px-md-5 text-center overflow-hidden col-md-6">
+        <div class="my-5 py-3">
+          <h2 class="display-5 mt-5">Organisé par:</h2>
+          <p class="lead display-4 mb-5"><%= @event.orga.first_name%></p>
+        </div>
+      </div>
+
     </div>
-    <div class="bg-dark box-shadow mx-auto" style="width: 80%; height: 300px; border-radius: 21px 21px 0 0;"></div>
-  </div>
-
-  <div class="bg-dark mr-md-3 pt-3 px-3 pt-md-5 px-md-5 text-center text-white overflow-hidden w-50">
-    <div class="my-3 py-3">
-      <h2 class="display-5">Organisé par:</h2>
-      <p class="lead"><%= Event.find(params[:id]).orga_id%></p>
-    </div>
-    <div class="bg-light box-shadow mx-auto" style="width: 80%; height: 300px; border-radius: 21px 21px 0 0;"></div>
-  </div>
-
-
-</div>

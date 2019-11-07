@@ -73,3 +73,5 @@ gem 'database_cleaner'
 gem 'dotenv-rails'
 
 gem 'devise'
+
+gem 'stripe'
